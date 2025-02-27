@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion by Whisper</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="mb-4">Audio to Text Converter</h1>
+    <form id="conversion-form" enctype="multipart/form-data" method="post">
+        <div class="mb-3">
+            <label for="recorder" class="form-label">Select audio file:</label>
+            <input type="file" accept="audio/*" capture id="recorder" name="file" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="model_type" class="form-label">Choose a Whisper model:</label>
+            <select id="model_type" name="model_type" class="form-select">
+                <option value="turbo">turbo</option>
+                <option value="tiny">tiny</option>
+                <option value="base">base</option>
+                <option value="small">small</option>
+                <option value="medium">medium</option>
+                <option value="large">large</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="file_type" class="form-label">Subtitle file format:</label>
+            <select id="file_type" name="file_type" class="form-select">
+                <option value="srt">srt</option>
+                <option value="vtt">vtt</option>
+            </select>
+        </div>
+<!-- x1 -->
+        <div class="mb-3">
+            <label for="filename" class="form-label">Subtitle file name:</label>
+            <input type="text" id="filename" name="filename" class="form-control" placeholder="subtitle">
+        </div>
+
+        <div class="mb-3">
+            <label for="max_char" class="form-label">Max characters per subtitle: <small>(default 80)</small></label>
+            <input type="number" name="max_char" class="form-control" placeholder="80">
+        </div>
+
+        <div class="mb-3">
+            <label for="translate_to" class="form-label">Translate to: </label>
+            <select name="translate_to" id="translate_to" class="form-select">
+                <option value=english>English</option>
+                <option value=spanish>Spanish</option>
+                <option value=arabic>Arabic</option>
+                <option value=hindi>Hindi</option>
+                <option value=bengali>Bengali</option>
+                <option value=portuguese>Portuguese</option>
+                <option value=russian>Russian</option>
+                <option value=urdu>Urdu</option>
+                <option value=french>French</option>
+                <option value=chinese>Chinese</option>
+            </select>
+        </div>
+
+        <div class="d-flex align-items-center mb-3">
+            <audio id="player" controls class="me-3"></audio>
+            <button type="submit" id="submit" class="btn btn-primary">
+                <span class="spinner-border spinner-border-sm d-none" id="spinner" role="status" aria-hidden="true"></span>
+                Convert audio to text
+            </button>
+        </div>
+    
+            {% if text %}
+                <p class="mt-4">{{ text }}</p>
+            {% endif %}
+        </form>
+    </div>
+
+    <script src="/static/main.js"></script>
+
+
+</body>
+</html>
